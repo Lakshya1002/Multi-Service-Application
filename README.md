@@ -1,35 +1,34 @@
-# 🐳 Multi-Service Docker Application
+# Multi-Service Docker Application
 
 A production-grade, multi-container application demonstrating advanced Docker concepts including custom base images, multi-stage builds, network isolation, Docker Secrets, health checks, and Redis caching — all orchestrated with Docker Compose.
 
-![DockerOps Dashboard](./frontend/src/assets/hero.png)
 
 ---
 
-## 📐 Architecture
+##  Architecture
 
 ```
                         ┌──────────────────────────────────────┐
-                        │          Host Machine :8080           │
+                        │         Host Machine :8080           │
                         └─────────────────┬────────────────────┘
                                           │
                               ┌───────────▼───────────┐
-                              │   Nginx Reverse Proxy  │
-                              │     (app_proxy)        │
-                              └──────┬─────────┬───────┘
+                              │   Nginx Reverse Proxy │
+                              │     (app_proxy)       │
+                              └──────┬─────────┬──────┘
                                      │         │
                     ┌────────────────▼─┐   ┌───▼─────────────────┐
-                    │  frontend-tier   │   │    backend-tier      │
-                    │                  │   │                      │
+                    │  frontend-tier   │   │    backend-tier     │
+                    │                  │   │                     │
                     │  ┌────────────┐  │   │  ┌──────────────┐   │
                     │  │  React +   │  │   │  │ Express API  │   │
                     │  │  Nginx SPA │  │   │  │  (Node 20)   │   │
-                    │  │(app_frontend)│ │   │  │(app_backend) │   │
+                    │ │(app_frontend)│ │   │  │(app_backend) │   │
                     │  └────────────┘  │   │  └──────┬───────┘   │
                     │                  │   │         │           │
                     └──────────────────┘   │  ┌──────▼───────┐   │
                                            │  │   MongoDB 6  │   │
-                                           │  │ (app_database)│  │
+                                           │  │(app_database)│   │
                                            │  └──────────────┘   │
                                            │  ┌──────────────┐   │
                                            │  │  Redis 7     │   │
@@ -40,7 +39,7 @@ A production-grade, multi-container application demonstrating advanced Docker co
 
 ---
 
-## 🚀 Features
+## Features
 
 | Feature | Implementation |
 |---|---|
@@ -57,7 +56,7 @@ A production-grade, multi-container application demonstrating advanced Docker co
 
 ---
 
-## 📦 Services
+## Services
 
 | Service | Image | Container | Port |
 |---|---|---|---|
@@ -69,7 +68,7 @@ A production-grade, multi-container application demonstrating advanced Docker co
 
 ---
 
-## 🗂 Project Structure
+## Project Structure
 
 ```
 multi_service_application/
@@ -101,14 +100,14 @@ multi_service_application/
 
 ---
 
-## 🛠 Prerequisites
+## Prerequisites
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (v24+)
 - Docker Compose v2 (included with Docker Desktop)
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### 1. Clone the repository
 
@@ -125,7 +124,7 @@ echo "your_app_password" > secrets/db_password.txt
 echo "your_root_password" > secrets/db_root_password.txt
 ```
 
-> ⚠️ The `secrets/` directory is `.gitignore`d and must be created manually before running.
+> The `secrets/` directory is `.gitignore`d and must be created manually before running.
 
 ### 3. Build the custom base image
 
@@ -156,7 +155,7 @@ The live React dashboard provides:
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 All API calls are proxied through Nginx at `http://localhost:8080/api/`.
 
@@ -170,7 +169,7 @@ All API calls are proxied through Nginx at `http://localhost:8080/api/`.
 
 ---
 
-## 🧪 Testing the Cache
+## Testing the Cache
 
 1. Click **Fetch Items** — first call hits MongoDB directly (~15–80ms)
 2. Click **Fetch Items** again immediately — served from Redis cache (<5ms)
@@ -179,7 +178,7 @@ All API calls are proxied through Nginx at `http://localhost:8080/api/`.
 
 ---
 
-## 🔒 Security Model
+## Security Model
 
 - **No passwords in environment variables** — all secrets use Docker Secrets mounted at `/run/secrets/`
 - **Network segmentation** — the frontend container can only reach the proxy; it cannot directly reach MongoDB or Redis
@@ -188,7 +187,7 @@ All API calls are proxied through Nginx at `http://localhost:8080/api/`.
 
 ---
 
-## 🐚 Useful Commands
+## Useful Commands
 
 ```bash
 # View all container statuses and health
@@ -212,6 +211,6 @@ docker-compose up --build -d backend
 
 ---
 
-## 📄 License
+## License
 
 MIT License — see [LICENSE](LICENSE) for details.
