@@ -2,6 +2,7 @@
 
 A production-grade, multi-container application demonstrating advanced Docker concepts including custom base images, multi-stage builds, network isolation, Docker Secrets, health checks, and Redis caching — all orchestrated with Docker Compose.
 
+**Project URL:** [https://github.com/Lakshya1002/Multi-Service-Application](https://github.com/Lakshya1002/Multi-Service-Application)
 
 ---
 
